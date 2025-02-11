@@ -109,6 +109,24 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+**Sending absolutely no content**
+
+Adding the `Flush` method to the end of your chain will flush the headers and status,
+allowing you to return a response without a body.
+
+```go
+package main
+
+import (
+	"net/http"
+	"github.com/thisisthemurph/emit"
+)
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	emit.New(w).Status(http.StatusInternalServerError).Flush()
+}
+```
+
 **Setting headers and cookies**
 
 Want to sprinkle in some headers and cookies?

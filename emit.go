@@ -91,6 +91,14 @@ func (rb *ResponseBuilder) NoContent() {
 	rb.w.WriteHeader(http.StatusNoContent)
 }
 
+// Flush writes the headers and status to the http.ResponseWriter.
+//
+// This is useful when you want to specify a status and/or headers without a body on the response.
+func (rb *ResponseBuilder) Flush() {
+	rb.applyHeaders()
+	rb.w.WriteHeader(rb.statusCode)
+}
+
 // applyHeaders applies the user set headers using the Header method.
 func (rb *ResponseBuilder) applyHeaders() {
 	for k, v := range rb.headers {
