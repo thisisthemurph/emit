@@ -119,3 +119,11 @@ func TestResponseBuilder_NoContent(t *testing.T) {
 	assert.Equal(t, http.StatusNoContent, rr.Code)
 	assert.Empty(t, rr.Body.String())
 }
+
+func TestResponseBuilder_Flush(t *testing.T) {
+	rr := httptest.NewRecorder()
+	emit.New(rr).Status(http.StatusCreated).Flush()
+
+	assert.Equal(t, http.StatusCreated, rr.Code)
+	assert.Empty(t, rr.Body.String())
+}
