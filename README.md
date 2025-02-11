@@ -45,7 +45,7 @@ func main() {
 
 **Sending a JSON response**
 
-JSON encoding without manually writing `if err := json.NewEncoder(rb.w).Encode(data); err != nil` every time, like a caveman.
+JSON encoding without manually writing `if err := json.NewEncoder(w).Encode(data); err != nil` every time, like a caveman.
 - applies the Content-Type application/json header
 - writes the status code with a 200 default if you didn't specify one
 - encodes the data to JSON
